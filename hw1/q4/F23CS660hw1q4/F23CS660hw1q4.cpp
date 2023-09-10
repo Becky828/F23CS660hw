@@ -12,7 +12,7 @@ using namespace std;
 struct vertex
 {
 	int number;
-	struct vertex* left, * right;
+	struct vertex *left, *right;
 };
 
 // A utility function to allocate a new vertex
@@ -28,10 +28,13 @@ struct vertex* newVertex(int number)
 // And returns max path sum going through vertex v.
 int MaxSumPath(vertex* v, int& res)
 {
+	
 	int currentRes = res;
+	int currentNumber = v->number;
 	int childSumPath = INT_MIN;
 	int currentMax = INT_MIN;
-	int rootSumPath = MaxSumPath(v, res);
+	
+	//int rootSumPath = MaxSumPath(v, res);
 
 	// Base Case
 	if (v == NULL)
@@ -41,29 +44,34 @@ int MaxSumPath(vertex* v, int& res)
 
 	if (v->left == NULL && v->right == NULL)
 	{
-		currentMax = rootSumPath;
+		//currentMax = rootSumPath;
+		//currentMax = currentRes + currentNumber;
+
 	}
 
-	if (v->left == NULL && v->right != NULL)
-	{
-		
-		childSumPath = MaxSumPath(v->right, res);
-		currentMax = max(childSumPath, rootSumPath);
-	}
+	//if (v->left == NULL && v->right != NULL)
+	//{		
+	//	childSumPath = MaxSumPath(v->right, res);
+	//	currentMax = childSumPath;
+	//	//currentMax = max(childSumPath, rootSumPath);
+	//}
 
-	if (v->left != NULL && v->right == NULL)
-	{
-		childSumPath = MaxSumPath(v->left, res);
-		currentMax = max(childSumPath, rootSumPath);
-	}
+	//if (v->left != NULL && v->right == NULL)
+	//{
+	//	childSumPath = MaxSumPath(v->left, res);
+	//	currentMax = childSumPath;
 
-	if (v->left != NULL && v->right != NULL)
-	{
-		childSumPath = max(MaxSumPath(v->left, res), MaxSumPath(v->right, res));
-		currentMax = max(childSumPath, rootSumPath);
-	}
+	//	//currentMax = max(childSumPath, rootSumPath);
+	//}
 
-	res = (currentRes, currentMax);
+	//if (v->left != NULL && v->right != NULL)
+	//{
+	//	childSumPath = max(MaxSumPath(v->left, res), MaxSumPath(v->right, res));
+	//	currentMax = childSumPath;
+	//	//currentMax = max(childSumPath, rootSumPath);
+	//}
+
+	//res = (currentRes, currentMax);
 }
 
 // Returns maximum path sum in tree with given root
@@ -71,7 +79,6 @@ int findMaxSum(vertex* v)
 {
 	// Initialize result
 	int res = INT_MIN;
-
 	// Compute and return result
 	MaxSumPath(v, res);
 	return res;
@@ -79,7 +86,19 @@ int findMaxSum(vertex* v)
 
 int main()
 {
-	std::cout << "Hello World!\n";
+//	std::cout << "Hello World!\n";
+	struct vertex* v = newVertex(10);
+	v->left = newVertex(2);
+	v->right = newVertex(10);
+	v->left->left = newVertex(20);
+	v->left->right = newVertex(1);
+	v->right->right = newVertex(-25);
+	v->right->right->left = newVertex(3);
+	v->right->right->right = newVertex(4);
+
+	//// Function call
+	cout << "Max path sum is " << findMaxSum(v);
+	return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

@@ -8,6 +8,20 @@ int main()
     std::cout << "Hello World!\n";
 }
 
+struct v
+{
+    int number;
+	struct v *left, *right;
+};
+
+struct v* newV(int number)
+{
+    struct v* newV = new v;
+    newV->number = number;
+    newV->left = newV->right = NULL;
+    return (newV);
+}
+
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
 

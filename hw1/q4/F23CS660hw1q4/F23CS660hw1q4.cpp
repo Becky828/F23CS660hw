@@ -1,5 +1,7 @@
 // F23CS660hw1q4.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
+//References: https://www.geeksforgeeks.org/find-maximum-path-sum-in-a-binary-tree/
+//https://leetcode.com/problems/binary-tree-maximum-path-sum/
 
 #include <iostream>
 
@@ -8,19 +10,29 @@ int main()
     std::cout << "Hello World!\n";
 }
 
-struct v
+struct vertex
 {
     int number;
-	struct v *left, *right;
+	struct vertex *left, *right;
 };
 
-struct v* newV(int number)
+struct vertex* newVertex(int number)
 {
-    struct v* newV = new v;
-    newV->number = number;
-    newV->left = newV->right = NULL;
-    return (newV);
+    struct vertex* newVertex = new vertex;
+    newVertex->number = number;
+    newVertex->left = newVertex->right = NULL;
+    return (newVertex);
 }
+
+// This function returns overall maximum path sum in 'res'
+// And returns max path sum going through root.
+int MaxSumPath(vertex* v)
+{
+    // Base Case
+    if (v == NULL)
+        return 0;
+}
+
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
